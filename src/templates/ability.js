@@ -18,7 +18,7 @@ export default ({ pageContext: { pokemon, ability } }) => (
         alt={pokemon.name}
       />
       <Text>{ability.effect_entries[0].effect}</Text>
-      <Link to={`/pokemon/${pokemon.name}`}>Back to {pokemon.name}</Link>
     </Box>
+    <Link to={`/pokemon/${pokemon.name}`}>Back to {pokemon.name}</Link>
   </Container>
 );
