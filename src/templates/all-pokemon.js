@@ -10,7 +10,7 @@ import {
 import { Link } from 'gatsby';
 
 export default ({ pageContext: { allPokemon } }) => (
-  <Container>
+  <Container maxW="x2" centerContent>
     <Text>Choose a Pokémon!</Text>
     <UnorderedList
       style={{
