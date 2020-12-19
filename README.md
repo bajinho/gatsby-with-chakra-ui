@@ -30,6 +30,8 @@
 3.  **Open the code and start customizing!**
 
     Your site is now running at http://localhost:8000!
+    
+    Pre view at https://gatsby-with-chakra-ui.vercel.app
 
     Edit `src/pages/index.js` to see your site update in real-time!
 
