@@ -15,6 +15,7 @@ export default ({ pageContext: { pokemon, ability } }) => (
       <Center>
         <Image
           boxSize="300px"
+          fallbackSrc="https://via.placeholder.com/300"
           src={pokemon.sprites.front_default}
           alt={pokemon.name}
         />

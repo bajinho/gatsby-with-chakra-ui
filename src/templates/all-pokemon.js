@@ -32,7 +32,7 @@ export default ({ pageContext: { allPokemon } }) => (
                 <Center>
                   <Image
                     boxSize="100px"
-                    fallbackSrc="https://via.placeholder.com/150"
+                    fallbackSrc="https://via.placeholder.com/100"
                     src={pokemon.sprites.front_default}
                     alt={pokemon.name}
                   />
