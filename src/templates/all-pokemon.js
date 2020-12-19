@@ -6,40 +6,54 @@ import {
   UnorderedList,
   ListItem,
   Image,
+  Flex,
+  Center,
 } from '@chakra-ui/react';
 import { Link } from 'gatsby';
 
 export default ({ pageContext: { allPokemon } }) => (
   <Container maxW="x2" centerContent>
-    <Text>Choose a Pokémon!</Text>
+    <Text fontSize="4xl">Choose a Pokémon!</Text>
     <UnorderedList
       style={{
         padding: 0,
       }}
     >
-      {allPokemon.map((pokemon) => (
-        <ListItem
-          key={pokemon.id}
-          style={{
-            textAlign: 'center',
-            listStyle: 'none',
-            display: 'inline-block',
-          }}
-        >
-          <Box padding="6" boxShadow="lg" bg="white">
-            <Link to={`/pokemon/${pokemon.name}`}>
-              <Image
-                boxSize="100px"
-                fallbackSrc="https://via.placeholder.com/150"
-                src={pokemon.sprites.front_default}
-                alt={pokemon.name}
-              />
-              <Text>{pokemon.name}</Text>
-            </Link>
-          </Box>
-        </ListItem>
-      ))}
+      <Flex>
+        {allPokemon.map((pokemon) => (
+          <ListItem
+            key={pokemon.id}
+            style={{
+              listStyle: 'none',
+            }}
+          >
+            <Box padding="6" boxShadow="lg" bg="white">
+              <Link to={`/pokemon/${pokemon.name}`}>
+                <Center>
+                  <Image
+                    boxSize="100px"
+                    fallbackSrc="https://via.placeholder.com/150"
+                    src={pokemon.sprites.front_default}
+                    alt={pokemon.name}
+                  />
+                </Center>
+                <Text fontSize="2xl">{pokemon.name}</Text>
+              </Link>
+            </Box>
+          </ListItem>
+        ))}
+      </Flex>
     </UnorderedList>
-    <Link to="/">Back to Home</Link>
+    <Box
+      color="gray.500"
+      fontWeight="semibold"
+      letterSpacing="wide"
+      fontSize="xs"
+      textTransform="uppercase"
+      ml="2"
+    >
+      <br />
+      <Link to="/">Back to Home</Link>
+    </Box>
   </Container>
 );

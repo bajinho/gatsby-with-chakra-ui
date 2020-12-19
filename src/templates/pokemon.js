@@ -6,36 +6,44 @@ import {
   UnorderedList,
   ListItem,
   Image,
+  Flex,
+  Center,
 } from '@chakra-ui/react';
 import { Link } from 'gatsby';
 
 export default ({ pageContext: { pokemon } }) => (
   <Container>
-    <Text>{pokemon.name}</Text>
-    <Image
-      boxSize="300px"
-      src={pokemon.sprites.front_default}
-      alt={pokemon.name}
-    />
     <Box padding="6" boxShadow="lg" bg="white">
-      <Text>Stats</Text>
+      <Text casing="capitalize" fontSize="4xl">
+        {pokemon.name}
+      </Text>
+      <Center>
+        <Image
+          boxSize="300px"
+          src={pokemon.sprites.front_default}
+          alt={pokemon.name}
+        />
+      </Center>
+      <Text fontSize="2xl">Stats</Text>
       <UnorderedList>
         {pokemon.stats.map((stat) => (
           <ListItem
             key={stat.stat.name}
             style={{
               padding: 0,
-              display: 'flex',
+              listStyle: 'none',
             }}
           >
-            <Text>{stat.stat.name}:</Text>
-            <Text>{stat.base_stat}</Text>
+            <Flex justifyContent="space-between">
+              <Text>{stat.stat.name}:</Text>
+              <Text>{stat.base_stat}</Text>
+            </Flex>
           </ListItem>
         ))}
       </UnorderedList>
     </Box>
     <Box padding="6" boxShadow="lg" bg="white">
-      <Text>Abilities</Text>
+      <Text fontSize="2xl">Abilities</Text>
       <UnorderedList>
         {pokemon.abilities.map((ability) => (
           <ListItem key={ability.name}>
@@ -46,6 +54,16 @@ export default ({ pageContext: { pokemon } }) => (
         ))}
       </UnorderedList>
     </Box>
-    <Link to="/pokemon">Back to all Pokémon</Link>
+    <Box
+      color="gray.500"
+      fontWeight="semibold"
+      letterSpacing="wide"
+      fontSize="xs"
+      textTransform="uppercase"
+      ml="2"
+    >
+      <br />
+      <Link to="/pokemon">Back to all Pokémon</Link>
+    </Box>
   </Container>
 );
