@@ -37,7 +37,9 @@ export default ({ pageContext: { allPokemon } }) => (
                     alt={pokemon.name}
                   />
                 </Center>
-                <Text fontSize="2xl">{pokemon.name}</Text>
+                <Text casing="capitalize" fontSize="2xl">
+                  {pokemon.name}
+                </Text>
               </Link>
             </Box>
           </ListItem>
