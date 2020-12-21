@@ -30,8 +30,8 @@ exports.createPages = async ({ actions: { createPage } }) => {
   });
 
   // Create a page for each Pokémon.
-  allPokemon.forEach(async (pokemon) => {
-    await createPage({
+  await allPokemon.forEach((pokemon) => {
+    createPage({
       path: `/pokemon/${pokemon.name}/`,
       component: require.resolve('./src/templates/pokemon.js'),
       context: { pokemon },
@@ -39,7 +39,7 @@ exports.createPages = async ({ actions: { createPage } }) => {
 
     // Create a page for each ability of the current Pokémon.
     pokemon.abilities.forEach(async (ability) => {
-      await createPage({
+      createPage({
         path: `/pokemon/${pokemon.name}/ability/${ability.name}/`,
         component: require.resolve('./src/templates/ability.js'),
         context: { pokemon, ability },
