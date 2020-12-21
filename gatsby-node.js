@@ -18,32 +18,37 @@ const getPokemonData = async (names) =>
   );
 
 exports.createPages = async ({ actions: { createPage } }) => {
-  const { data } = await get('/pokemon?limit=10&offset=0');
+  const { data } = await get('/pokemon?limit=30&offset=0');
   const { results } = data;
-  const allPokemon = await getPokemonData(results.map((p) => p.name));
+  const all = async (res) =>
+    Promise.all(await getPokemonData(res.map((p) => p.name)));
+
+  const allPokemon = await all(results);
 
   // Create a page that lists all Pokémon.
-  await createPage({
-    path: `/pokemon`,
-    component: require.resolve('./src/templates/all-pokemon.js'),
-    context: { allPokemon },
-  });
-
-  // Create a page for each Pokémon.
-  await allPokemon.forEach((pokemon) => {
+  if (allPokemon) {
     createPage({
-      path: `/pokemon/${pokemon.name}/`,
-      component: require.resolve('./src/templates/pokemon.js'),
-      context: { pokemon },
+      path: `/pokemon`,
+      component: require.resolve('./src/templates/all-pokemon.js'),
+      context: { allPokemon },
     });
 
-    // Create a page for each ability of the current Pokémon.
-    pokemon.abilities.forEach(async (ability) => {
+    // Create a page for each Pokémon.
+    allPokemon.forEach((pokemon) => {
       createPage({
-        path: `/pokemon/${pokemon.name}/ability/${ability.name}/`,
-        component: require.resolve('./src/templates/ability.js'),
-        context: { pokemon, ability },
+        path: `/pokemon/${pokemon.name}/`,
+        component: require.resolve('./src/templates/pokemon.js'),
+        context: { pokemon },
+      });
+
+      // Create a page for each ability of the current Pokémon.
+      pokemon.abilities.forEach(async (ability) => {
+        createPage({
+          path: `/pokemon/${pokemon.name}/ability/${ability.name}/`,
+          component: require.resolve('./src/templates/ability.js'),
+          context: { pokemon, ability },
+        });
       });
     });
-  });
+  }
 };

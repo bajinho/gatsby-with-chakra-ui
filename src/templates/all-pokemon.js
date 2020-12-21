@@ -19,7 +19,7 @@ export default ({ pageContext: { allPokemon } }) => (
         padding: 0,
       }}
     >
-      <Flex>
+      <Flex flexWrap="wrap" flexDirection="row">
         {allPokemon.map((pokemon) => (
           <ListItem
             key={pokemon.id}
