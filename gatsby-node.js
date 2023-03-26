@@ -18,7 +18,7 @@ const getPokemonData = async (names) =>
   );
 
 exports.createPages = async ({ actions: { createPage } }) => {
-  const { data } = await get('/pokemon?limit=30&offset=0');
+  const { data } = await get('/pokemon?limit=600&offset=0');
   const { results } = data;
   const all = async (res) =>
     Promise.all(await getPokemonData(res.map((p) => p.name)));

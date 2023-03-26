@@ -1,3 +1,8 @@
-const theme = {};
+import { extendTheme } from '@chakra-ui/react'
+const theme = {
+  colors: {
+    primary: 'rebeccapurple',
+  },
+}
 
-export default theme;
+export default extendTheme(theme)

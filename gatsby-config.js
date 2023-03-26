@@ -10,30 +10,31 @@ module.exports = {
     //   },
     // },,
     {
-      resolve: '@chakra-ui/gatsby-plugin',
+      resolve: "@chakra-ui/gatsby-plugin",
       options: {
         /**
-         * @property {boolean} [isResettingCSS=true]
+         * @property {boolean} [resetCSS=true]
          * if `false`, this plugin will not use `<CSSReset />
          */
-        isResettingCSS: true,
-        /**
-         * @property {boolean} [isUsingColorMode=true]
-         * if `false`, this plugin will not use <ColorModeProvider />
-         */
-        isUsingColorMode: true,
+        resetCSS: true,
         /**
          * @property {number} [portalZIndex=40]
          * The z-index to apply to all portal nodes. This is useful
          * if your app uses a lot z-index to position elements.
          */
         portalZIndex: 40,
+        /**
+         * @property {boolean} [isBaseProvider=false]
+         * Setting this to true will render the `ChakraBaseProvider`
+         * which only uses theme tokens initially and not default component themes
+         */
+        isBaseProvider: false,
       },
     },
     'gatsby-plugin-react-helmet',
     // 'gatsby-plugin-sitemap',
     'gatsby-plugin-offline',
-    'gatsby-transformer-sharp',
+    // 'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
